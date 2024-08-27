@@ -1,6 +1,9 @@
 function updateCity(event) {
   function updateTime() {
     let cityTimeZone = event.target.value;
+    if (cityTimeZone === "current") {
+      cityTimeZone = moment.tz.guess();
+    }
     let cityName = cityTimeZone.replace("_", " ").split("/")[1];
     let citiesElement = document.querySelector("#cities");
     let cityDate = moment().tz(cityTimeZone).format("MMMM Do YYYY");
@@ -19,6 +22,7 @@ function updateCity(event) {
     citiesElement.innerHTML = cityData;
   }
 
+  updateTime();
   setInterval(updateTime, 1000);
 }
 
