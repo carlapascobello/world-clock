@@ -1,25 +1,27 @@
-// Barcelona
-function updateTime() {
-  let barcelonaElement = document.querySelector("#barcelona");
-  let barcelonaDateElement = barcelonaElement.querySelector(".date");
-  let barcelonaTimeElement = barcelonaElement.querySelector(".time");
+function updateCity(event) {
+  function updateTime() {
+    let cityTimeZone = event.target.value;
+    let cityName = cityTimeZone.replace("_", " ").split("/")[1];
+    let citiesElement = document.querySelector("#cities");
+    let cityDate = moment().tz(cityTimeZone).format("MMMM Do YYYY");
+    let cityTime = moment()
+      .tz(cityTimeZone)
+      .format("hh:mm:ss [<small>]A[</small>]");
 
-  let barcelonaTime = moment().tz("Europe/Madrid");
+    let cityData = `<div class="city" id="barcelona">
+          <div>
+            <h2 id="name">${cityName}</h2>
+            <div class="date">${cityDate}</div>
+          </div>
+          <div class="time">${cityTime}</div>
+        </div>`;
 
-  barcelonaDateElement.innerHTML = barcelonaTime.format("MMMM Do YYYY");
-  barcelonaTimeElement.innerHTML = barcelonaTime.format(
-    "hh:mm:ss:SSS [<small>]A[</small>]"
-  );
+    citiesElement.innerHTML = cityData;
+  }
 
-  // Gaza
-  let gazaElement = document.querySelector("#gaza");
-  let gazaDateElement = gazaElement.querySelector(".date");
-  let gazaTimeElement = gazaElement.querySelector(".time");
-
-  let gazaTime = moment().tz("Asia/Gaza");
-
-  gazaDateElement.innerHTML = gazaTime.format("MMMM Do YYYY");
-  gazaTimeElement.innerHTML = gazaTime.format("hh:mm:ss [<small>]A[</small>]");
+  setInterval(updateTime, 1000);
 }
 
-setInterval(updateTime, 1);
+let citySelectElement = document.querySelector("#city");
+
+citySelectElement.addEventListener("change", updateCity);
