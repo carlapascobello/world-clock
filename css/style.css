@@ -9,6 +9,11 @@ h1 {
   font-size: 36px;
 }
 
+.home {
+  text-decoration: none;
+  color: black;
+}
+
 h2 {
   margin: 0 0 5px;
   font-size: 28px;
