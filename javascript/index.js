@@ -24,6 +24,19 @@ function updateTime() {
       "hh:mm:ss [<small>]A[</small>]"
     );
   }
+
+  // Manila
+  let manilaElement = document.querySelector("#manila");
+  if (gazaElement) {
+    let manilaDateElement = manilaElement.querySelector(".date");
+    let manilaTimeElement = manilaElement.querySelector(".time");
+    let manilaTime = moment().tz("Asia/Manila");
+
+    manilaDateElement.innerHTML = manilaTime.format("MMMM Do YYYY");
+    manilaTimeElement.innerHTML = manilaTime.format(
+      "hh:mm:ss [<small>]A[</small>]"
+    );
+  }
 }
 
 updateTime();
